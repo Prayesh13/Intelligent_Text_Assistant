@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<style>
+    .about-section {
+        background: linear-gradient(to bottom right, #d3dce6, #a9b8d4);
+        padding: 60px 0;
+    }
+
+    .about-header {
+        font-weight: 700;
+        color: #343a40;
+        margin-bottom: 40px;
+        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-description {
+        font-size: 1.1rem;
+        color: #6c757d;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    .about-card {
+        background: linear-gradient(to bottom, #ffffff, #f1f4f9);
+        border: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .about-card-title {
+        font-size: 1.5rem;
+        color: #0056b3;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-card-text {
+        font-size: 1rem;
+        color: #6c757d;
+        line-height: 1.6;
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #004d99, #0056b3);
+        color: #fff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(to right, #002b5c, #004d99);
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="about-section">
+    <div class="container">
+        <h2 class="about-header text-center">About Us</h2>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="about-card">
+                    <h3 class="about-card-title">Our Mission</h3>
+                    <p class="about-card-text">
+                        Our mission is to deliver cutting-edge solutions that help businesses and individuals make data-driven decisions with ease. We aim to provide accurate, timely, and actionable insights that empower our clients to reach their goals.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="about-card">
+                    <h3 class="about-card-title">Our Vision</h3>
+                    <p class="about-card-text">
+                        We envision a world where data is easily accessible and used effectively by everyone, regardless of industry. Through continuous innovation and commitment to excellence, we strive to create a future where data is the key to success.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

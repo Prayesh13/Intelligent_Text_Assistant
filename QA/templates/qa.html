@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Answering System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 40px; /* Adjusted padding for better spacing */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+    <script>
+        function addQuestionBox() {
+            const questionContainer = document.getElementById('questionContainer');
+            const newQuestionBox = document.createElement('div');
+            newQuestionBox.className = 'form-group';
+            newQuestionBox.innerHTML = '<textarea class="form-control" name="questions" rows="3" placeholder="Type your question here..."></textarea>';
+            questionContainer.appendChild(newQuestionBox);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1><b>Question Answering System</b></h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="inputText"><b>Enter Text Here:</b></label>
+                <textarea class="form-control" id="inputText" name="input_text" rows="5" placeholder="Paste your text here..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="pdf"><b> Or Upload PDF (optional):</b></label>
+                <input type="file" class="form-control" name="pdf" accept=".pdf">
+            </div>
+            <div id="questionContainer" class="form-group">
+                <label for="questions"><b>Enter your question:</b></label>
+                <textarea class="form-control" name="questions" rows="3" placeholder="Type your question here..." required></textarea>
+            </div>
+            <button type="button" class="btn btn-secondary" onclick="addQuestionBox()">Add Another Question</button>
+            <button type="submit" class="btn btn-primary">Submit Questions</button>
+        </form>
+
+        <!-- Reset Button -->
+        <form method="post" action="{{ url_for('reset') }}" class="mt-3">
+            <button type="submit" class="btn btn-warning">Reset Session</button>
+        </form>
+
+        {% if answers %}
+            <h2 class="mt-4">Answers</h2>
+            <ul class="list-group">
+                {% for question, answer in answers %}
+                    <li class="list-group-item">
+                        <strong>Q:</strong> {{ question }}<br>
+                        <strong>A:</strong> {{ answer }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="mt-4">
+                <ul class="list-group">
+                {% for category, message in messages %}
+                  <li class="list-group-item list-group-item-{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+          {% endif %}
+        {% endwith %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

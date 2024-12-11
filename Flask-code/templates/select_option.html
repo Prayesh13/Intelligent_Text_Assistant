@@ -1,0 +1,212 @@
+{% extends "layout.html" %}
+{% block title %}Choose One!{% endblock %}
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(to bottom right, #d3dce6, #a9b8d4);
+        color: #343a40;
+    }
+
+    .card {
+        background: linear-gradient(to bottom, #ffffff, #f1f4f9);
+        border: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        color: #0056b3;
+        margin-top: 10px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+
+    .btn {
+        font-size: 1.1rem;
+        border-radius: 50px;
+        padding: 10px 30px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #004d99, #0056b3);
+        color: #fff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(to right, #002b5c, #004d99);
+        transform: scale(1.05);
+    }
+
+    .btn-secondary {
+        background: linear-gradient(to right, #c94b4b, #4b134f);
+        color: #fff;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background: linear-gradient(to right, #871a1a, #2a092b);
+        transform: scale(1.05);
+    }
+
+    .icon-container {
+        background: linear-gradient(to right, #ffffff, #e6e9f0);
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon-container i {
+        color: #0056b3;
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #343a40;
+        margin-bottom: 30px;
+        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .message {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .message p {
+        margin: 0;
+    }
+
+    .message .close {
+        color: #0c5460;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-center"><i class="fas fa-clipboard-check"></i> Select an Option</h2>
+
+    <!-- First Row -->
+    <div class="row g-4 mb-4">
+        <!-- Question Answering System -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card text-center py-4">
+                <div class="card-body">
+                    <div class="icon-container">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3 class="card-title">Question Answering System</h3>
+                    <p class="card-text">
+                        Ask questions and get precise answers from input text. Advanced AI ensures context-aware, relevant responses, perfect for information retrieval and knowledge extraction tasks.
+                    </p>
+                    <form method="post">
+                        <button type="submit" name="option" value="qa_system" class="btn btn-primary">
+                            <i class="fas fa-arrow-right"></i> Choose QA System
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text Summarizer -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card text-center py-4">
+                <div class="card-body">
+                    <div class="icon-container">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="card-title">Text Summarizer</h3>
+                    <p class="card-text">
+                        Condense lengthy documents into brief, meaningful summaries. Extract key points and essential information quickly, ideal for summarizing articles, reports, and other lengthy texts.
+                    </p>
+                    <form method="post">
+                        <button type="submit" name="option" value="summarization" class="btn btn-secondary">
+                            <i class="fas fa-arrow-right"></i> Choose Text Summarizer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="row g-4 mb-4">
+        <!-- Image Caption Generation -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card text-center py-4">
+                <div class="card-body">
+                    <div class="icon-container">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="card-title">Image Caption Generation</h3>
+                    <p class="card-text">
+                        Generate descriptive captions for your images with advanced AI. Perfect for creating meaningful annotations or enhancing accessibility.
+                    </p>
+                    <form method="post">
+                        <button type="submit" name="option" value="image_captioning" class="btn btn-primary">
+                            <i class="fas fa-arrow-right"></i> Choose Image Captioning
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Translation Task -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card text-center py-4">
+                <div class="card-body">
+                    <div class="icon-container">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="card-title">Translation Task</h3>
+                    <p class="card-text">
+                        Translate text from one language to another with high accuracy. Break language barriers effortlessly for effective communication. Enable context-aware translations that adapt to different languages.
+                    </p>
+
+                    <form method="post">
+                        <button type="submit" name="option" value="translation" class="btn btn-secondary">
+                            <i class="fas fa-arrow-right"></i> Choose Translation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if message %}
+    <div class="message alert-dismissible fade show" role="alert">
+        <p>{{ message }}</p>
+        <a href="#" class="close" data-bs-dismiss="alert" aria-label="Close">&times;</a>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

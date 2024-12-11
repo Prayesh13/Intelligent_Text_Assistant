@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block title %}Text Summarizer{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #d3dce6, #a9b8d4);
+            font-family: 'Poppins', sans-serif;
+            color: #343a40;
+            padding: 20px;
+        }
+
+        .container-summary {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: #0056b3;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #0056b3;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .form-control, .form-control-file {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 15px;
+        }
+
+        .form-control:focus, .form-control-file:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+        }
+
+        .btn {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #004d99, #0056b3);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #002b5c, #004d99);
+            transform: scale(1.05);
+        }
+
+        .alert {
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .bg-white {
+            background: #f8f9fa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .list-group-item {
+            border-radius: 10px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+
+    <div class="container-summary">
+        <h1>Text Summarizer</h1>
+        <form id="uploadForm" action="{{ url_for('app_summary.summarize') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file"><b>Upload PDF:</b></label>
+                <input type="file" class="form-control-file" id="file" name="file" accept=".pdf">
+            </div>
+
+            <div class="form-group">
+                <label for="text"><b>Or Enter text:</b></label>
+                <textarea class="form-control" id="text" name="text" rows="5" placeholder="Enter your text here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Summarize</button>
+        </form>
+
+        <!-- Display Summary or Error -->
+        <br>
+        {% if summary %}
+            <div class="alert alert-success">Summary generated successfully!</div>
+            <h4 class="mt-4">Summary:</h4>
+            <br>
+            <div class="bg-white p-3 rounded shadow-sm mt-2">
+                <ul class="mt-2">
+                    {% for point in summary.split('. ')[:5] %}
+                        <li>{{ point.strip() }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% elif error %}
+            <div class="alert alert-danger mt-4">{{ error }}</div>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

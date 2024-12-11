@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+
+{% block title %}Language Translation{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #d3dce6, #a9b8d4);
+            font-family: 'Poppins', sans-serif;
+            color: #343a40;
+            padding: 20px;
+        }
+
+        .container-translation {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: #0056b3;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 100%;
+            background: #f0f0f0;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+        }
+
+        .btn {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            width: 100%;
+            background: linear-gradient(to right, #004d99, #0056b3);
+            color: white;
+            border: none;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #002b5c, #004d99);
+            transform: scale(1.05);
+        }
+
+        .alert {
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .translation-output {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .form-row .form-group:last-child {
+            margin-right: 0;
+        }
+    </style>
+
+    <div class="container-translation">
+        <h1>Language Translation</h1>
+        <form id="translationForm" action="{{ url_for('app_translation.translate_view') }}" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="src_lang"><b>Select Source Language:</b></label>
+                    <select class="form-control" id="src_lang" name="src_lang" style="height: 50px;">
+                        {% for lang_name, lang_code in language_dict.items() %}
+                            <option value="{{ lang_name }}" {% if lang_name == default_src_lang %}selected{% endif %}>{{ lang_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tgt_lang"><b>Select Target Language:</b></label>
+                    <select class="form-control" id="tgt_lang" name="tgt_lang" style="height: 50px;">
+                        {% for lang_name, lang_code in language_dict.items() %}
+                            <option value="{{ lang_name }}" {% if lang_name == default_tgt_lang %}selected{% endif %}>{{ lang_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="text"><b>Enter Text:</b></label>
+                    <textarea class="form-control" id="text" name="text" rows="4">{{ request.form['text'] if request.form['text'] else '' }}</textarea>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="output"><b>Translated Output:</b></label>
+                    <textarea class="form-control" id="output" name="output" rows="4" readonly>{{ translation if translation else '' }}</textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Translate</button>
+        </form>
+
+        <!-- Display Translation or Error -->
+        <div class="row">
+            <div class="col-5">
+                {% if translation %}
+                    <br>
+                    <div class="alert alert-success">Translation successful!</div>
+                {% elif error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

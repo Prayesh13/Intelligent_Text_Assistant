@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" type="image/x-icon">
+
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #d3dce6, #a9b8d4);
+            color: #343a40;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(to right, #004d99, #0056b3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            height: 50px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+        }
+
+        .navbar-nav .nav-item.active .nav-link {
+            color: #ffd700 !important;
+        }
+
+        /* Button Styling */
+        .btn-outline-primary, .btn-outline-secondary {
+            font-size: 1.1rem;
+            border-radius: 50px;
+            padding: 10px 30px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-outline-primary {
+            color: #0056b3;
+            border: 1px solid #0056b3;
+        }
+
+        .btn-outline-primary:hover {
+            background: #0056b3;
+            color: #fff;
+        }
+
+        .btn-outline-secondary {
+            color: #6c757d;
+            border: 1px solid #6c757d;
+        }
+
+        .btn-outline-secondary:hover {
+            background: #6c757d;
+            color: #fff;
+        }
+
+        .card {
+            background: linear-gradient(to bottom, #ffffff, #f1f4f9);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #0056b3;
+            margin-top: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .icon-container {
+            background: linear-gradient(to right, #ffffff, #e6e9f0);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-container i {
+            color: #0056b3;
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 30px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<br>
+        <br>
+        <br>
+
+    <!-- Navbar Section -->
+    <!-- Navbar Section -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="{{ url_for('select_option') }}">Services</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    <!-- Main Content Section -->
+    <div class="container mt-4">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap 4 JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

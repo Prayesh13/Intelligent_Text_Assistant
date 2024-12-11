@@ -1,0 +1,7 @@
+flask
+mysql-connector-python
+transformers
+pymongo
+wtforms
+dnspython
+gunicorn

@@ -1,0 +1,156 @@
+{% extends "layout.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+<style>
+    .contact-section {
+        background: linear-gradient(to bottom right, #d3dce6, #a9b8d4);
+        padding: 60px 0;
+    }
+
+    .contact-header {
+        font-weight: 700;
+        color: #343a40;
+        margin-bottom: 40px;
+        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-description {
+        font-size: 1.1rem;
+        color: #6c757d;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .contact-card {
+        background: linear-gradient(to bottom, #ffffff, #f1f4f9);
+        border: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-control {
+        border-radius: 50px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #dcdfe6;
+    }
+
+    .form-control:focus {
+        border-color: #0056b3;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #004d99, #0056b3);
+        color: #fff;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 50px;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(to right, #002b5c, #004d99);
+        transform: scale(1.05);
+    }
+
+    .contact-info {
+        margin-top: 40px;
+    }
+
+    .contact-info .icon-container {
+        background: linear-gradient(to right, #ffffff, #e6e9f0);
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info .icon-container i {
+        color: #0056b3;
+        font-size: 1.5rem;
+    }
+
+    .contact-info h3 {
+        color: #343a40;
+        font-size: 1.3rem;
+        margin-top: 10px;
+    }
+
+    .contact-info p {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+</style>
+
+<div class="contact-section">
+    <div class="container">
+        <h2 class="contact-header text-center">Contact Us</h2>
+        <p class="contact-description">
+            Have a question or need assistance? Reach out to us, and our team will get back to you as soon as possible. We're here to help!
+        </p>
+
+        <div class="row justify-content-center">
+            <!-- Contact Form -->
+            <div class="col-lg-6 col-md-8">
+                <div class="contact-card">
+                    <h3 class="text-center">Get in Touch</h3>
+                    <form method="post" action="https://github.com/Prayesh13">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-info row mt-5">
+            <!-- Contact Information -->
+            <div class="col-lg-4 col-md-6 mb-4 text-center">
+                <div class="icon-container">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Phone</h3>
+                <p>+1 (123) 456-7890</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 text-center">
+                <div class="icon-container">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>info@scet.ac.in</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 text-center">
+                <div class="icon-container">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Location</h3>
+                <p>Athwalines, Surat, Gujarat, India.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,194 @@
+{% extends 'layout.html' %}
+{% block title %}Question Answering System{% endblock %}
+{% block content %}
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #d3dce6, #a9b8d4);
+            font-family: 'Poppins', sans-serif;
+            color: #343a40;
+            padding: 20px;
+        }
+
+        .container-qa {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: #0056b3;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 15px;
+        }
+
+        .form-control:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+        }
+
+        .btn {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #004d99, #0056b3);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #002b5c, #004d99);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(to right, #c94b4b, #4b134f);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(to right, #871a1a, #2a092b);
+            transform: scale(1.05);
+        }
+
+        .btn-warning {
+            background: linear-gradient(to right, #f39c12, #f1c40f);
+            color: white;
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background: linear-gradient(to right, #e67e22, #f39c12);
+            transform: scale(1.05);
+        }
+
+        .message-container {
+            margin-top: 20px;
+        }
+
+        .list-group-item {
+            border-radius: 10px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-container ul {
+            padding-left: 0;
+        }
+
+        .message-container .list-group-item {
+            margin-bottom: 10px;
+        }
+
+        .card {
+            margin-top: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .icon-container {
+            background: #f1f4f9;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-container i {
+            font-size: 1.8rem;
+            color: #0056b3;
+        }
+
+        .reset-btn {
+            margin-top: 30px;
+        }
+    </style>
+
+    <script>
+        function addQuestionBox() {
+            const questionContainer = document.getElementById('questionContainer');
+            const newQuestionBox = document.createElement('div');
+            newQuestionBox.className = 'form-group';
+            newQuestionBox.innerHTML = '<textarea class="form-control" name="questions" rows="1" placeholder="Type your question here..."></textarea>';
+            questionContainer.appendChild(newQuestionBox);
+        }
+    </script>
+
+    <div class="container-qa">
+        <h1>Question Answering System</h1>
+        <form method="post" enctype="multipart/form-data">
+            <!-- Input Text -->
+            <div class="form-group">
+                <label for="inputText">Enter Text Here:</label>
+                <textarea class="form-control" id="inputText" name="input_text" rows="5" placeholder="Paste your text here..."></textarea>
+            </div>
+
+            <!-- PDF Upload -->
+            <div class="form-group">
+                <label for="pdf">Or Upload PDF (optional):</label>
+                <input type="file" class="form-control" name="pdf" accept=".pdf">
+            </div>
+
+            <!-- Questions -->
+            <div id="questionContainer" class="form-group">
+                <label for="questions">Enter your question:</label>
+                <textarea class="form-control" name="questions" rows="1" placeholder="Type your question here..." required></textarea>
+            </div>
+            <button type="button" class="btn btn-secondary" onclick="addQuestionBox()">Add Another Question</button>
+            <button type="submit" class="btn btn-primary">Submit Questions</button>
+        </form>
+
+        <!-- Reset Button -->
+        <form method="post" action="{{ url_for('app_qa.reset') }}" class="reset-btn">
+            <button type="submit" class="btn btn-warning">Reset Session</button>
+        </form>
+
+        <!-- Answers Section -->
+        {% if answers %}
+            <div class="card">
+                <h2 class="card-title">Answers</h2>
+                <ul class="list-group">
+                    {% for question, answer in answers %}
+                        <li class="list-group-item">
+                            <strong>Q:</strong> {{ question }}<br>
+                            <strong>A:</strong> {{ answer }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

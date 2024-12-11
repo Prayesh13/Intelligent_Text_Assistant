@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Summarizer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            padding: 20px; /* Padding for body */
+        }
+        .container {
+            max-width: 1000px; /* Max width for the container */
+            margin: auto; /* Center the container */
+            background: white; /* White background for the container */
+            padding: 100px; /* Padding inside the container */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        h2 {
+            text-align: center; /* Center the heading */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center"><b>Text Summarizer</b></h1>
+        <br>
+        <br>
+        <form id="uploadForm" action="/summarize" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file"><b>Upload PDF:</b></label>
+                <input type="file" class="form-control-file" id="file" name="file" accept=".pdf">
+            </div>
+            <div class="form-group">
+                <label for="text"><b>Or enter text:</b></label>
+                <textarea class="form-control" id="text" name="text" rows="5" placeholder="Enter your text here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Summarize</button>
+        </form>
+
+        <!-- Display Summary or Error -->
+        {% if summary %}
+            <h4 class="mt-4">Summary:</h4>
+            <p>{{ summary }}</p>
+        {% elif error %}
+            <div class="alert alert-danger mt-4">{{ error }}</div>
+        {% endif %}
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
