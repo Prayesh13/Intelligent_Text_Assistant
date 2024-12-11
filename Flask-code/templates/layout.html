@@ -127,62 +127,80 @@
             margin-bottom: 30px;
             text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
         }
+
+        /* Footer Styling */
+        footer {
+            background: #004d99;
+            color: #ffffff;
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        footer i {
+            color: #ff0000;
+        }
     </style>
 </head>
 <body>
 <br>
-        <br>
-        <br>
+<br>
+<br>
 
-    <!-- Navbar Section -->
-    <!-- Navbar Section -->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url_for('home') }}">
-                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item mr-4">
-                            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-                        </li>
-                        <li class="nav-item mr-4">
-                            <a class="nav-link" href="{{ url_for('about') }}">About</a>
-                        </li>
-                        <li class="nav-item mr-4">
-                            <a class="nav-link" href="{{ url_for('select_option') }}">Services</a>
-                        </li>
-                        <li class="nav-item mr-4">
-                            <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
-                        </li>
+<!-- Navbar Section -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item mr-4">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item mr-4">
+                    <a class="nav-link" href="{{ url_for('select_option') }}">Services</a>
+                </li>
+                <li class="nav-item mr-4">
+                    <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                </li>
 
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                <li class="nav-item mr-4">
+                    <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                </li>
 
-
-    <!-- Main Content Section -->
-    <div class="container mt-4">
-
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-info" role="alert">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-
-        {% block content %}
-        {% endblock %}
+            </ul>
+        </div>
     </div>
+</nav>
 
-    <!-- Bootstrap 4 JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Main Content Section -->
+<div class="container mt-4">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- Footer Section -->
+<footer class="bg-primary text-center mt-5 py-3 text-light shadow">
+    <p class="mb-0">&copy; 2024 Intelligent Text Assistant. Built with <i class="fas fa-heart text-danger"></i> Us.</p>
+</footer>
+
+<!-- Bootstrap 4 JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
