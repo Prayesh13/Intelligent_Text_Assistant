@@ -1,5 +1,0 @@
-flask
-transformers
-gunicorn
-pymupdf
-pillow
