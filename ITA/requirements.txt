@@ -3,3 +3,4 @@ transformers
 gunicorn
 pymupdf
 pillow
+torch
