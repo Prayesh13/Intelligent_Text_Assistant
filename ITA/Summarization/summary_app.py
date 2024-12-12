@@ -1,6 +1,10 @@
 import os
-from flask import Flask, request, render_template, Blueprint
-from Summarization.summarization import summarize_text, extract_text_from_pdf
+import sys
+from flask import request, render_template, Blueprint
+
+sys.path.append(os.path.abspath("Summarization"))
+
+from summarization import summarize_text, extract_text_from_pdf
 
 app_summary = Blueprint('app_summary', __name__)
 

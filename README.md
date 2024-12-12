@@ -1,5 +1,4 @@
-# Intelligent Text Assistant
-
+# [Intelligent Text Assistant](https://intelligent-text-assistant.onrender.com) ([Link](https://intelligent-text-assistant.onrender.com))
 **Intelligent Text Assistant** is an AI-powered project designed to assist with various text processing tasks such as summarization, sentiment analysis, translation, image captioning, and other natural language processing (NLP) operations. It is built to provide efficient and accurate text-based solutions for real-world applications.
 
 ---

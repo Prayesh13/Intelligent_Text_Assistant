@@ -1,7 +1,7 @@
 from flask import (
     Flask,
     render_template, redirect, url_for,
-    flash, request, session
+    request
 )
 from Summarization.summary_app import app_summary
 from QA.qa_app import app_qa

@@ -1,6 +1,8 @@
 import os
-from flask import Flask, request, render_template, Blueprint
-from Image_caption.caption import generate_caption
+import sys
+sys.path.append(os.path.abspath("Image_caption"))
+from flask import request, render_template, Blueprint
+from caption import generate_caption
 
 app_caption = Blueprint('app_caption', __name__)
 

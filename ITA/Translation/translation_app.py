@@ -1,6 +1,9 @@
+from flask import request, render_template, Blueprint
+import sys
 import os
-from flask import Flask, request, render_template, Blueprint
-from Translation.translation import translate_m2m
+sys.path.append(os.path.abspath("Translation"))
+
+from translation import translate_m2m
 
 # Define a blueprint for translation
 app_translation = Blueprint('app_translation', __name__)

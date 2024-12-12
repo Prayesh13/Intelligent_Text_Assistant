@@ -1,10 +1,23 @@
 from flask import render_template, request, session, redirect, url_for, flash, Blueprint
-from QA.qa_system import process_questions
-from pdf_code.pdf_text_extraction import extract_text_from_pdf
+import fitz  # pymupdf
 import os
+import sys
+sys.path.append(os.path.abspath("QA"))
+
+from qa_system import process_questions
+
 
 # Initialize Flask app
 app_qa = Blueprint('app_qa', __name__)
+
+
+
+def extract_text_from_pdf(pdf_path):
+    doc = fitz.open(pdf_path)
+    text = ""
+    for page in doc:
+        text += page.get_text()
+    return text
 
 
 @app_qa.route('/question_answering', methods=['GET', 'POST'])
