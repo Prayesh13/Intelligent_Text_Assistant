@@ -143,10 +143,10 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ---
 
 ## Contact
-**Author**: Prayesh
+**Author**: Prayesh Godhani
 
 - **GitHub**: [Prayesh13](https://github.com/Prayesh13)
-- **Email**: [prayeshgodhani.aids21@scet.ac.in](mailto:prayeshgodhani.aids21@scet.ac.in)
+- **Email**: [prayeshgodhani04@gmail.com](mailto:prayeshgodhani04@gmail.com)
 
 For any questions, suggestions, or collaboration opportunities, feel free to reach out!
 
